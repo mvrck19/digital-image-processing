@@ -21,8 +21,8 @@ int main()
     FILE *fd;
     FILE *fd2;
     
-    fd = fopen("/Users/mkoziri/Documents/sequences/BlowingBubbles_416x240.yuv", "rb");
-    fd2 = fopen("/Users/mkoziri/Documents/sequences/BlowingBubbles_416x240_filtered.yuv", "wb");
+    fd = fopen("BlowingBubbles_416x240.yuv", "rb");
+    fd2 = fopen("BlowingBubbles_416x240_filtered.yuv", "wb");
     
     fread(yplane, 1, sizeof(yplane), fd);
     fread(uplane, 1, sizeof(uplane), fd);
