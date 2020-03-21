@@ -17,20 +17,15 @@ unsigned char uplane[120][208]; //array for the u component. Needed to create th
 unsigned char vplane[120][208]; //array for the v component. Needed to create the .yuv output file
 unsigned char newyplane[240][416];
 
-unsigned char find_avg(int x, int y)
+int find_avg(int x, int y)
 {
-    unsigned char sum;
-    unsigned char counter;
-    for (size_t i = x - 1; i < x + 1; i++)
-        for (size_t j = y - 1; j < y + 1; j++)
+    int sum;
+    for (int i = x - 7; i < x + 8; i++)
+        for (int j = y - 7; j < y + 8; j++)
             if (i >= 0 && i < 240 && j >= 0 && i < 416)
-            {
-                sum = yplane[x - 1][y + 1];
-                counter++;
-            }
-    return sum / counter;
+                sum = sum + yplane[x - 1][y + 1];
+    return sum / 225;
 }
-
 
 int main()
 {
@@ -45,15 +40,15 @@ int main()
     fread(vplane, 1, sizeof(vplane), fd);
 
     /*
- code to handle one or more of the components
- For example the y component can be "seen" as a greyscale image with dimension 416X240
+ Code to handle one or more of the components.
+ For example the y component can be "seen" as a greyscale image with dimension 416X240.
  So, the data or the raw image are already stored in the yplane[240][416] array.
  */
 
     for (int x = 0; x < 240; x++)
     {
         for (int y = 0; y < 416; y++)
-        {   
+        {
             newyplane[x][y] = find_avg(x, y);
         }
     }
