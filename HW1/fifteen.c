@@ -19,11 +19,11 @@ unsigned char newyplane[240][416];
 
 int find_avg(int x, int y)
 {
-    int sum;
+    int sum = 0;
     for (int i = x - 7; i < x + 8; i++)
         for (int j = y - 7; j < y + 8; j++)
             if (i >= 0 && i < 240 && j >= 0 && i < 416)
-                sum = sum + yplane[x - 1][y + 1];
+                sum = sum + yplane[i][j];
     return sum / 225;
 }
 
