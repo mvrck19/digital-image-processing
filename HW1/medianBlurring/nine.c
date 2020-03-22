@@ -25,9 +25,16 @@ int cmpfunc (const void * a, const void * b) {
 int median(int x, int y)
 {
     int result = 0, counter = 0;
-    int array[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
-    for (int i = (x - 1); i < (x + 2); i++)
-        for (int j = (y - 1); j < (y + 2); j++)
+    int array[81];
+    //Filling the array with zeros
+    for (int i = 0; i < 81; i++)
+    {
+        array[i]=0;
+    }
+    
+    
+    for (int i = (x - 4); i < (x + 5); i++)
+        for (int j = (y - 4); j < (y + 5); j++)
             if (i >= 0 && i < 240 && j >= 0 && i < 416)
             {
                 array[counter] = yplane[i][j];
@@ -38,8 +45,8 @@ int median(int x, int y)
                 array[counter] = 0;
                 counter++;
             }
-    qsort(array,9,sizeof(int),cmpfunc);
-    return array[4];    //return value at the middle of the sorted array
+    qsort(array,81,sizeof(int),cmpfunc);
+    return array[40];    //return value at the middle of the sorted array
 }
 
 int main()
@@ -48,7 +55,7 @@ int main()
     FILE *fd2;
 
     fd = fopen("BlowingBubbles_416x240.yuv", "rb");
-    fd2 = fopen("BlowingBubbles_416x240_filtered.yuv", "wb");
+    fd2 = fopen("BlowingBubbles_416x240_filtered_median_nine.yuv", "wb");
 
     fread(yplane, 1, sizeof(yplane), fd);
     fread(uplane, 1, sizeof(uplane), fd);
