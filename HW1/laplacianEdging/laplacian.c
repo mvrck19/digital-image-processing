@@ -20,12 +20,18 @@ unsigned char newyplane[240][416];
 int laplacian(int x, int y)
 {
     int up = 0, down = 0, left = 0, right = 0, center = 0;
-    center = 4 * yplane[x][y];
-    if (y >= 0)         left  = (-1) * yplane[x][y - 1];
-    if (y < 416)        right = (-1) * yplane[x][y + 1];
-    if (x >= 0)         up    = (-1) * yplane[x - 1][y];
-    if (x < 240)        down  = (-1) * yplane[x + 1][y];
+    center = (+4) * yplane[x][y];
+    if (y - 1  >= 0)         left  = (-1) * yplane[x][y - 1];
+    if (y + 1 < 416)         right = (-1) * yplane[x][y + 1];
+    if (x - 1  >= 0)         up    = (-1) * yplane[x - 1][y];
+    if (x + 1 < 240)         down  = (-1) * yplane[x + 1][y];
     return up+down+left+right+center;
+}
+
+int bound(int x){
+    if (x>255)  x=255;
+    if (x<0)    x=0;
+    return x;
 }
 
 int main()
@@ -50,7 +56,7 @@ int main()
     {
         for (int y = 0; y < 416; y++)
         {
-            newyplane[x][y] =  laplacian(x, y);
+            newyplane[x][y] = bound(yplane[x][y] + laplacian(x, y));
         }
     }
 
