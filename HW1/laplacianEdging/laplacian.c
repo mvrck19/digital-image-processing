@@ -25,6 +25,7 @@ int laplacian(int x, int y)
     if (y < 416)        right = (-1) * yplane[x][y + 1];
     if (x >= 0)         up    = (-1) * yplane[x - 1][y];
     if (x < 240)        down  = (-1) * yplane[x + 1][y];
+    return up+down+left+right+center;
 }
 
 int main()
