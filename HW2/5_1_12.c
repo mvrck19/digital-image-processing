@@ -23,11 +23,11 @@ int create_theta(int x, int y)
     int result = 0;
     for (int i = (x - 1); i < (x + 2); i++)                  //  For every
         for (int j = (y - 1); j < (y + 2); j++)              //  pixel around
-            if (i >= 0 && i < rows && j >= 0 && i < columns) // If it doesn't go out of limits
+            if (i >= 0 && i < rows && j >= 0 && i < columns) //  If it doesn't go out of limits
             {
-                if (binary[i][j] >= 128)                     // If every pixel is 225
-                    result = 255;                            // Then return 255
-                else                                         // Otherwise return 0
+                if (binary[i][j] >= 128)                     //  If every pixel is 225
+                    result = 255;                            //  Then return 255
+                else                                         //  Otherwise return 0
                     result = 0;
             }
             else
